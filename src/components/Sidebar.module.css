@@ -1,0 +1,53 @@
+/* Sidebar.module.css */
+.sidebar {
+  background-color: #f8f9fa; /* Light background */
+  padding: 16px;
+  border-right: 1px solid #dee2e6; /* Light border */
+  height: 100vh; /* Full height */
+  overflow-y: auto; /* Scroll if needed */
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border 0.3s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border: 1px solid #007bff; /* Focus border */
+}
+
+.jobItem {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+.jobItem:hover {
+  background-color: #e9ecef; /* Light grey background on hover */
+}
+
+.selected {
+  background-color: #007bff; /* Highlight selected job */
+  color: white; /* Change text color for selected */
+}
+
+.jobItem h3 {
+  margin: 0;
+  font-size: 1.2rem; /* Job title size */
+}
+
+.jobItem p {
+  margin: 4px 0 0; /* Margin for description */
+  font-size: 0.9rem; /* Description size */
+}
