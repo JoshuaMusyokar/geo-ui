@@ -50,7 +50,7 @@ const JobCard = ({ job, isSelected, onClick }) => (
         {/* User Name Section */}
         <div className="mt-1">
           <span className="text-sm text-gray-600">
-            Posted by: <strong>{job.userId.name}</strong>
+            Posted by: <strong>{job.userId ? job.userId.name : ""}</strong>
           </span>
         </div>
 
