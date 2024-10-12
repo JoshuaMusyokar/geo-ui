@@ -69,6 +69,12 @@ const CheckInFormModal = ({
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
       });
+      if (place.formatted_address) {
+        setLocationInput(place.formatted_address);
+      } else {
+        // Fallback if no address is available
+        setLocationInput(`${lat}, ${lng}`);
+      }
       // setCenter({
       //   lat: place.geometry.location.lat(),
       //   lng: place.geometry.location.lng(),

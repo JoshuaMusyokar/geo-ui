@@ -104,8 +104,8 @@ const Home = () => {
     const newJobData = {
       title: newCheckInData.get("title"),
       description: newCheckInData.get("description"),
-      lat: currentLocation.lat, // Use current location
-      lng: currentLocation.lng, // Use current location
+      lat: locationData.lat, // Use current location
+      lng: locationData.lng, // Use current location
       image: newCheckInData.get("image"), // Handle image data (if any)
       userId: userId, // Replace with actual userId (if available)
     };
