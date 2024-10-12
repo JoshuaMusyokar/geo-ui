@@ -16,30 +16,30 @@ const Map = ({ jobs }) => {
   }, []);
   const apiKey = "AIzaSyBJ_KG6ykrtije7hb4BGwBIus3SoltgEcU";
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap
-        mapContainerClassName={styles.mapContainer} // Custom styling
-        center={{ lat: 40.7128, lng: -74.006 }} // Default center (NYC)
-        zoom={12}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-        options={{
-          styles: [
-            /* Optional: Add custom Google Maps styling for a unique look */
-          ],
-          disableDefaultUI: true, // Hide default UI controls for a clean design
-          zoomControl: true,
-        }}
-      >
-        {jobs.map((job, index) => (
-          <Marker
-            key={index}
-            position={{ lat: job.lat, lng: job.lng }}
-            title={job.title}
-          />
-        ))}
-      </GoogleMap>
-    </LoadScript>
+    // <LoadScript googleMapsApiKey={apiKey}>
+    <GoogleMap
+      mapContainerClassName={styles.mapContainer} // Custom styling
+      center={{ lat: 40.7128, lng: -74.006 }} // Default center (NYC)
+      zoom={12}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+      options={{
+        styles: [
+          /* Optional: Add custom Google Maps styling for a unique look */
+        ],
+        disableDefaultUI: true, // Hide default UI controls for a clean design
+        zoomControl: true,
+      }}
+    >
+      {jobs.map((job, index) => (
+        <Marker
+          key={index}
+          position={{ lat: job.lat, lng: job.lng }}
+          title={job.title}
+        />
+      ))}
+    </GoogleMap>
+    // </LoadScript>
   );
 };
 

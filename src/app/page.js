@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useRouter } from "next/navigation";
 import { getToken } from "../utils/auth";
 import Map from "../components/Map";
@@ -8,8 +9,9 @@ import FloatingButton from "../components/FloatingButton";
 import CheckInFormModal from "../components/CheckInFormModal";
 import { jwtDecode } from "jwt-decode";
 import { postJob, getJobs } from "@/utils/api";
+import { GOOGLE_MAPS_API_KEY } from "@/utils/constants";
 // Modal with the form
-
+const libraries = ["places"];
 const Home = () => {
   const router = useRouter();
   const [jobs, setJobs] = useState([
@@ -92,6 +94,11 @@ const Home = () => {
   const handleFormSubmit = async (newCheckInData) => {
     const token = getToken();
     console.log("new checkin data", newCheckInData.get("title"));
+    console.log("new checkin lat", newCheckInData.get("location").lat);
+    // Parse the location string back to an object
+    const locationData = JSON.parse(newCheckInData.get("location") || "{}");
+    console.log("New Check-in Lat:", locationData.lat);
+    console.log("New Check-in Lng:", locationData.lng);
 
     // Prepare the job data to be sent to the server
     const newJobData = {
@@ -136,16 +143,23 @@ const Home = () => {
   return (
     <div style={{ display: "flex" }}>
       <Sidebar jobs={jobs} onJobClick={handleJobClick} />
-      <div style={{ position: "relative", flex: 1 }}>
-        <Map jobs={jobs} />
-        <FloatingButton onClick={handleNewCheckIn} />
-        <CheckInFormModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          onSubmit={handleFormSubmit} // Pass form submission handler
-          isSubmitting={false}
-        />
-      </div>
+      <LoadScript
+        googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+        libraries={libraries}
+        onLoad={() => console.log("Google Maps Loaded")}
+        onError={(error) => console.error("Google Maps Load Error:", error)}
+      >
+        <div style={{ position: "relative", flex: 1 }}>
+          <Map jobs={jobs} />
+          <FloatingButton onClick={handleNewCheckIn} />
+          <CheckInFormModal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+            onSubmit={handleFormSubmit} // Pass form submission handler
+            isSubmitting={false}
+          />
+        </div>
+      </LoadScript>
     </div>
   );
 };
