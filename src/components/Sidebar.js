@@ -86,7 +86,6 @@ const Sidebar = ({ jobs = [], onJobClick, loading = false }) => {
     return jobs.filter(
       (job) =>
         job.title.toLowerCase().includes(query) ||
-        job.location.toLowerCase().includes(query) ||
         job.tags?.some((tag) => tag.toLowerCase().includes(query))
     );
   }, [jobs, searchQuery]);
@@ -116,7 +115,7 @@ const Sidebar = ({ jobs = [], onJobClick, loading = false }) => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
             type="search"
-            placeholder="Search jobs or locations..."
+            placeholder="Search jobs by titles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-lg
